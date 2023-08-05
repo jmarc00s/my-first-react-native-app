@@ -49,5 +49,6 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     gap: 8,
+    marginBottom: 16,
   },
 });
