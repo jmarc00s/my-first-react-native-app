@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import { Imc } from "./components/Imc";
+import { styles } from "./style";
 
 export const Form = () => {
   const [form, setForm] = useState({
@@ -23,39 +31,35 @@ export const Form = () => {
     setForm((prevState) => ({ ...prevState, [name]: text }));
 
   return (
-    <View>
-      <View style={styles.container}>
-        <Text>Altura</Text>
+    <View style={styles.container}>
+      <View style={styles.form}>
+        <Text style={styles.label}>Altura</Text>
         <TextInput
+          style={styles.input}
           value={form.height}
           placeholder="Ex: 1.83"
           keyboardType="numeric"
           onChangeText={(text) => handleFormChange(text, "height")}
         />
-        <Text>Peso</Text>
+        <Text style={styles.label}>Peso</Text>
         <TextInput
+          style={styles.input}
           value={form.weight}
           id="weight"
           onChangeText={(text) => handleFormChange(text, "weight")}
           placeholder="Ex: 75.5"
           keyboardType="numeric"
         />
-        <Button
+        <TouchableOpacity
+          style={styles.button}
           disabled={disableSubmit}
           onPress={handleImcCalculation}
-          title="Calcular IMC"
-        />
+        >
+          <Text style={styles.buttonText}>Calcular IMC</Text>
+        </TouchableOpacity>
       </View>
 
       {!!imc && <Imc message="IMC" imc={imc} />}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    gap: 8,
-    marginBottom: 16,
-  },
-});
