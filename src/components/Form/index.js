@@ -11,6 +11,7 @@ export const Form = () => {
   const [imc, setImc] = useState(0);
 
   const resetForm = () => setForm({ height: "", weight: "" });
+  const disableSubmit = !form.height.length || !form.weight.length;
 
   const handleImcCalculation = () => {
     const heightSquared = +form.height * +form.height;
@@ -39,7 +40,11 @@ export const Form = () => {
           placeholder="Ex: 75.5"
           keyboardType="numeric"
         />
-        <Button onPress={handleImcCalculation} title="Calcular IMC" />
+        <Button
+          disabled={disableSubmit}
+          onPress={handleImcCalculation}
+          title="Calcular IMC"
+        />
       </View>
 
       {!!imc && <Imc message="IMC" imc={imc} />}
