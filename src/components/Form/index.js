@@ -10,10 +10,12 @@ export const Form = () => {
 
   const [imc, setImc] = useState(0);
 
+  const resetForm = () => setForm({ height: "", weight: "" });
+
   const handleImcCalculation = () => {
     const heightSquared = +form.height * +form.height;
     setImc((+form.weight / heightSquared).toFixed(2));
-    console.log(+form.weight);
+    resetForm();
   };
 
   const handleFormChange = (text, name) =>
